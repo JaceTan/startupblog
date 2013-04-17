@@ -10,7 +10,7 @@
 
 
 Router::connect(
-  '/blog/settings/*',
+  '/:prefix/blog/settings/*',
   array(
     'plugin' => 'startup_blog',
     'controller' => 'blog_settings',
