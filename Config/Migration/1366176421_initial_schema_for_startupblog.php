@@ -110,6 +110,27 @@ class InitialSchemaForStartupBlog extends CakeMigration {
  * @access public
  */
 	public function after($direction) {
+		$data = array(
+				array(
+					'id' => 1,
+					'setting' => 'meta_title',
+					'setting_text' => 'Meta Title',
+					'tip' => NULL,
+					'value' => 'Startup Blog',
+					'modified' => NULL,
+				),
+				array(
+					'id' => 2,
+					'setting' => 'meta_description',
+					'setting_text' => 'Meta Description',
+					'tip' => NULL,
+					'value' => '',
+					'modified' => NULL,
+				),
+
+			);
+		$blogSettingModel = ClassRegistry::init('StartupBlog.BlogSetting');
+		$blogSettingModel->saveMany($data);
 		return true;
 	}
 }
