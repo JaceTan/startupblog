@@ -7,6 +7,29 @@ App::uses('StartupBlogAppModel', 'StartupBlog.Model');
 class BlogPost extends StartupBlogAppModel {
 
 /**
+ * hasAndBelongsToMany associations
+ *
+ * @var array
+ */
+	public $hasAndBelongsToMany = array(
+		'BlogPostCategory' => array(
+			'className' => 'Blog.BlogPostCategory',
+			'joinTable' => 'blog_post_categories_blog_posts',
+			'foreignKey' => 'blog_post_id',
+			'associationForeignKey' => 'blog_post_category_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
+
+/**
  * Validation rules
  *
  * @var array
