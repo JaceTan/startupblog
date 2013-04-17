@@ -111,24 +111,170 @@ class InitialSchemaForStartupBlog extends CakeMigration {
  */
 	public function after($direction) {
 		$data = array(
-				array(
+			'0' => array(
 					'id' => 1,
 					'setting' => 'meta_title',
 					'setting_text' => 'Meta Title',
-					'tip' => NULL,
+					'tip' => '',
 					'value' => 'Startup Blog',
-					'modified' => NULL,
+					'modified' => NULL
 				),
-				array(
+
+			'1' => array(
 					'id' => 2,
 					'setting' => 'meta_description',
 					'setting_text' => 'Meta Description',
-					'tip' => NULL,
+					'tip' => '',
 					'value' => '',
-					'modified' => NULL,
+					'modified' => NULL
 				),
 
-			);
+			'2' => array(
+					'id' => 3,
+					'setting' => 'meta_keywords',
+					'setting_text' => 'Meta Keywords',
+					'tip' => '',
+					'value' => '',
+					'modified' => NULL
+				),
+
+			'3' => array(
+					'id' => 4,
+					'setting' => 'rss_channel_title',
+					'setting_text' => 'RSS Channel Title',
+					'tip' => '',
+					'value' => 'Startup Blog',
+					'modified' => NULL
+				),
+
+			'4' => array(
+					'id' => 5,
+					'setting' => 'rss_channel_description',
+					'setting_text' => 'RSS Channel Description',
+					'tip' => '',
+					'value' => '',
+					'modified' => NULL
+				),
+
+			'5' => array(
+					'id' => 6,
+					'setting' => 'show_summary_on_post_view',
+					'setting_text' => 'Show post summary on post detail page?',
+					'tip' => "'Yes' or 'No'",
+					'value' => 'No',
+					'modified' => NULL
+				),
+
+			'6' => array(
+					'id' => 7,
+					'setting' => 'show_categories_on_post_view',
+					'setting_text' => 'Show post categories on post detail page?',
+					'tip' => "'Yes' or 'No'",
+					'value' => 'No',
+					'modified' => NULL
+				),
+
+			'7' => array(
+					'id' => 8,
+					'setting' => 'show_tags_on_post_view',
+					'setting_text' => 'Show post tags on post detail page?',
+					'tip' => "'Yes' or 'No'",
+					'value' => 'Yes',
+					'modified' => NULL
+				),
+
+			'8' => array(
+					'id' => 9,
+					'setting' => 'use_summary_or_body_on_post_index',
+					'setting_text' => 'Use the summary or the post body on the post index page?',
+					'tip' => "'Summary' or 'Body'",
+					'value' => 'Summary',
+					'modified' => NULL
+				),
+
+			'9' => array(
+					'id' => 10,
+					'setting' => 'use_summary_or_body_in_rss_feed',
+					'setting_text' => 'Use the summary or the post body in the RSS feed?',
+					'tip' => "'Summary' or 'Body'",
+					'value' => 'Body',
+					'modified' => NULL
+				),
+
+			'10' => array(
+					'id' => 11,
+					'setting' => 'published_format_on_post_index',
+					'setting_text' => 'Published date/time format on post index page',
+					'tip' => "e.g. 'd M Y' see php.net/date",
+					'value' => '<\s\p\a\n \c\l\a\s\s="\d\a\y">d</\s\p\a\n> <\s\p\a\n \c\l\a\s\s="\m\o\n\t\h">M</\s\p\a\n> <\s\pa\n \c\l\a\s\s="\y\e\a\r">y</\s\p\a\n>',
+					'modified' => NULL
+				),
+
+			'11' => array(
+					'id' => 12,
+					'setting' => 'published_format_on_post_view',
+					'setting_text' => 'Published date/time format on post view page',
+					'tip' => "e.g. 'd M Y' see php.net/date",
+					'value' => '<\s\p\a\n \c\l\a\s\s="\d\a\y">d</\s\p\a\n> <\s\p\a\n \c\l\a\s\s="\m\o\n\t\h">M</\s\p\a\n> <\s\p\a\n \c\l\a\s\s="\y\e\a\r">y</\s\p\a\n>',
+					'modified' => NULL
+				),
+
+			'12' => array(
+					'id' => 13,
+					'setting' => 'og:site_name',
+					'setting_text' => 'Open Graph: Site Name',
+					'tip' => '',
+					'value' => 'Startup Blog',
+					'modified' => NULL
+				),
+
+			'13' => array(
+					'id' => 14,
+					'setting' => 'fb_admins',
+					'setting_text' => 'Facebook Admins',
+					'tip' => '',
+					'value' => '',
+					'modified' => NULL
+				),
+
+			'14' => array(
+					'id' => 15,
+					'setting' => 'use_disqus',
+					'setting_text' => 'Use Disqus',
+					'tip' => "'Yes' or 'No'",
+					'value' => 'No',
+					'modified' => NULL
+				),
+
+			'15' => array(
+					'id' => 16,
+					'setting' => 'disqus_shortname',
+					'setting_text' => 'Disqus Shortname',
+					'tip' => '',
+					'value' => '',
+					'modified' => NULL
+				),
+
+			'16' => array(
+					'id' => 17,
+					'setting' => 'disqus_developer',
+					'setting_text' => 'Disqus Developer Mode',
+					'tip' => "'Yes' or 'No'",
+					'value' => 'Yes',
+					'modified' => NULL
+				),
+
+			'17' => array(
+					'id' => 18,
+					'setting' => 'show_share_links',
+					'setting_text' => 'Show the share buttons on blog posts?',
+					'tip' => "'Yes' or 'No'",
+					'value' => 'Yes',
+					'modified' => NULL
+				)
+		);
+
+
 		$blogSettingModel = ClassRegistry::init('StartupBlog.BlogSetting');
 		$blogSettingModel->saveMany($data);
 		return true;
