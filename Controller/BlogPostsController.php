@@ -19,8 +19,7 @@ class BlogPostsController extends StartupBlogAppController {
  *
  * @var array
  */
-	public $helpers = array('Text', 'Time', 'StartupBlog.Reader', 'StartupBlog.Blog');
-
+	public $helpers = array('Text', 'Time', 'StartupBlog.Reader', 'StartupBlog.Blog', 'TinyMCE.TinyMCE');
 
 
 /**
