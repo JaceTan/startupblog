@@ -35,10 +35,22 @@ foreach($controllers as $routeName => $controllerName) {
 }
 
 Router::connect(
-		"/{$name}",
-		array(
-			'plugin' => 'startup_blog',
-			'controller' => 'blog_posts',
-			'action' => 'index'
-		)
-	);
+	"/{$name}/:slug",
+	array(
+		'plugin' => 'startup_blog',
+		'controller' => 'blog_posts',
+		'action' => 'view'
+	),
+	array(
+		'slug' => '[a-zA-Z0-9\-\_]+',
+	)
+);
+
+Router::connect(
+	"/{$name}",
+	array(
+		'plugin' => 'startup_blog',
+		'controller' => 'blog_posts',
+		'action' => 'index'
+	)
+);
