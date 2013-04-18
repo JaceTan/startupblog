@@ -24,9 +24,8 @@
 		<td><?php echo h($this->Reader->saysStatus($blogPost['BlogPost']['published'])); ?>&nbsp;</td>
 		<td><?php echo h($this->Reader->saysYes($blogPost['BlogPost']['in_rss'])); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogPost['BlogPost']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogPost['BlogPost']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $blogPost['BlogPost']['id']), null, __('Are you sure you want to delete # %s?', $blogPost['BlogPost']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('plugin' => 'startup_blog', 'controller' => 'blog_posts', 'admin' => true, 'action' => 'edit', $blogPost['BlogPost']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('plugin' => 'startup_blog', 'controller' => 'blog_posts', 'admin' => true, 'action' => 'delete', $blogPost['BlogPost']['id']), null, __('Are you sure you want to delete # %s?', $blogPost['BlogPost']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -48,10 +47,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Blog Post'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Blog Post Categories'), array('controller' => 'blog_post_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Blog Post Category'), array('controller' => 'blog_post_categories', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Blog Post Tags'), array('controller' => 'blog_post_tags', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Blog Post Tag'), array('controller' => 'blog_post_tags', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Blog Post'), array('admin' => true, 'plugin' => 'startup_blog', 'controller' => 'blog_posts', 'action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Blog Post Categories'), array('admin' => true, 'plugin' => 'startup_blog', 'controller' => 'blog_post_categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Blog Post Category'), array('admin' => true, 'plugin' => 'startup_blog', 'controller' => 'blog_post_categories', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
