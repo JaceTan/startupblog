@@ -11,7 +11,7 @@ class BlogPostsController extends StartupBlogAppController {
    *
    * @var array
    */
-	public $components = array('RequestHandler');
+	//public $components = array('RequestHandler');
 
 /**
  * Helpers

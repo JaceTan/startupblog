@@ -8,12 +8,28 @@
  * @license MIT License - http://www.opensource.org/licenses/mit-license.php
  */
 
-
-Router::connect(
-  '/:prefix/blog/settings/*',
-  array(
-    'plugin' => 'startup_blog',
-    'controller' => 'blog_settings',
-  )
+$name = "blog";
+$controllers = array(
+	'settings' => 'blog_settings', 
+	'posts' => 'blog_posts', 
+	'categories' => 'blog_post_categories'
 );
 
+foreach($controllers as $routeName => $controllerName) {
+	Router::connect(
+		"/:prefix/{$name}/{$routeName}",
+		array(
+			'plugin' => 'startup_blog',
+			'controller' => $controllerName,
+			'action' => 'index'
+		)
+	);
+
+	Router::connect(
+		"/:prefix/{$name}/{$routeName}/:action/*",
+		array(
+			'plugin' => 'startup_blog',
+			'controller' => $controllerName,
+		)
+	);
+}

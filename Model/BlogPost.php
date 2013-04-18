@@ -21,7 +21,7 @@ class BlogPost extends StartupBlogAppModel {
  */
 	public $hasAndBelongsToMany = array(
 		'BlogPostCategory' => array(
-			'className' => 'Blog.BlogPostCategory',
+			'className' => 'StartupBlog.BlogPostCategory',
 			'joinTable' => 'blog_post_categories_blog_posts',
 			'foreignKey' => 'blog_post_id',
 			'associationForeignKey' => 'blog_post_category_id',
