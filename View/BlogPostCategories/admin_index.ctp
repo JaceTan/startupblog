@@ -15,8 +15,6 @@
 			<th><?php echo $this->Paginator->sort('rss_channel_description'); ?></th>
 			<th><?php echo $this->Paginator->sort('blog_post_count'); ?></th>
 			<th><?php echo $this->Paginator->sort('under_blog_post_count'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($blogPostCategories as $blogPostCategory): ?>
@@ -36,8 +34,6 @@
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['rss_channel_description']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['blog_post_count']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['under_blog_post_count']); ?>&nbsp;</td>
-		<td><?php echo h($blogPostCategory['BlogPostCategory']['created']); ?>&nbsp;</td>
-		<td><?php echo h($blogPostCategory['BlogPostCategory']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogPostCategory['BlogPostCategory']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogPostCategory['BlogPostCategory']['id'])); ?>
@@ -63,8 +59,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Blog Post Category'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Blog Post Categories'), array('controller' => 'blog_post_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Blog Post Category'), array('controller' => 'blog_post_categories', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Blog Post Category'), array('admin' => true, 'plugin' => 'startup_blog', 'controller' => 'blog_post_categories', 'action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Blog Post Categories'), array('admin' => true, 'plugin' => 'startup_blog', 'controller' => 'blog_post_categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Parent Blog Post Category'), array('admin' => true, 'plugin' => 'startup_blog', 'controller' => 'blog_post_categories', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

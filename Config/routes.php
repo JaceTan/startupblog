@@ -33,3 +33,12 @@ foreach($controllers as $routeName => $controllerName) {
 		)
 	);
 }
+
+Router::connect(
+		"/{$name}",
+		array(
+			'plugin' => 'startup_blog',
+			'controller' => 'blog_posts',
+			'action' => 'index'
+		)
+	);

@@ -13,8 +13,13 @@
 		echo $this->Form->input('meta_title');
 		echo $this->Form->input('meta_description');
 		echo $this->Form->input('meta_keywords');
-		echo $this->Form->input('created_by');
-		echo $this->Form->input('modified_by');
+		echo $this->Form->input('BlogPostCategory.BlogPostCategory',array(
+			'label' => __('Category',true),
+			'type' => 'select',
+			'multiple' => 'checkbox',
+			'options' => $blogPostCategories,
+			'selected' => $this->Html->value('BlogPostCategory.id'),
+		)); 
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

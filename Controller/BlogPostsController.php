@@ -19,7 +19,7 @@ class BlogPostsController extends StartupBlogAppController {
  *
  * @var array
  */
-	public $helpers = array('Text', 'Time', 'StartupBlog.Reader');
+	public $helpers = array('Text', 'Time', 'StartupBlog.Reader', 'StartupBlog.Blog');
 
 
 
@@ -46,6 +46,7 @@ class BlogPostsController extends StartupBlogAppController {
  * category, tag or archive, or rendered as HTML or RSS
  */
 	public function index() {
+		$this->log("reach here1");
 		$this->paginate['conditions'][]['BlogPost.published'] = 1;
 		if ($this->RequestHandler->isRss()) {
 			// Add RSS condition to default options defined in paginate
@@ -62,23 +63,24 @@ class BlogPostsController extends StartupBlogAppController {
 					$blogPosts = $this->BlogPost->find('byCategory', $options);
 					break;
 				default:
+					$this->log("reach here");
 					$blogPosts = $this->BlogPost->find('all', $options);
 					break;
 			}
 			$this->set(compact('blogPosts'));
 			return;
 		}
-
+$this->log("reach here2");
 		switch ($this->_filtered()) {
 			case 'category':
 				$this->paginate = Set::merge($this->paginate, array('byCategory'), $this->_category());
 				break;
 		}
-
+$this->log("reach here3");
 		$blogPosts = $this->paginate();
 
 		$this->set(compact('blogPosts'));
-
+$this->log("reach here4");
 		$this->_setArchivesCategoriesAndTags();
 
 	}
@@ -149,6 +151,7 @@ class BlogPostsController extends StartupBlogAppController {
 	* in the View so they can be rendered on the index and view pages.
 	*/
 	public function _setArchivesCategoriesAndTags() {
+
 		if (!$categories = Cache::read('blog_categories')) {
 			// getMenuWithUnderCounts() is a method on the HabtmCounterCache Behavior
 			// which returns a nest list of categories, in a format that can be 
@@ -157,7 +160,8 @@ class BlogPostsController extends StartupBlogAppController {
 			$categories = $this->BlogPost->getMenuWithUnderCounts('BlogPostCategory', array('url' => array('slug' => 'category')));
 			Cache::write('blog_categories', $categories);
 		}
-
+$this->log('any categories??');
+			$this->log($categories);
 		// Set the selected keys in the options that are sent to the methods which
 		// fetch the archives, categories and tags, to the selected value according
 		// to the current mode. This is so when the data is rendered, we can
@@ -257,7 +261,7 @@ class BlogPostsController extends StartupBlogAppController {
 			throw new NotFoundException(__('Invalid blog post'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->BlogPost->save($this->request->data)) {
+			if ($this->BlogPost->saveAssociated($this->request->data)) {
 				$this->Session->setFlash(__('The blog post has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -267,6 +271,8 @@ class BlogPostsController extends StartupBlogAppController {
 			$options = array('conditions' => array('BlogPost.' . $this->BlogPost->primaryKey => $id));
 			$this->request->data = $this->BlogPost->find('first', $options);
 		}
+		$blogPostCategories = $this->BlogPost->BlogPostCategory->generateTreeList();
+		$this->set(compact('blogPostCategories'));
 	}
 
 /**

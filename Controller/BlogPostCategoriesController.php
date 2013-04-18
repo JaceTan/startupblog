@@ -32,7 +32,7 @@ class BlogPostCategoriesController extends StartupBlogAppController {
 	}
 
 /**
- * admin_add method
+ * add method
  *
  * @return void
  */
@@ -46,6 +46,8 @@ class BlogPostCategoriesController extends StartupBlogAppController {
 				$this->Session->setFlash(__('The blog post category could not be saved. Please, try again.'));
 			}
 		}
+		$parents = $this->BlogPostCategory->generateTreeList();
+		$this->set(compact('parents'));
 	}
 
 /**

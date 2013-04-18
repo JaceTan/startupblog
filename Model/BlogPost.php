@@ -14,6 +14,7 @@ class BlogPost extends StartupBlogAppModel {
 			'counterScope' => array(
 				'BlogPost.published' => 1
 			),
+			//'underCounterCache' => 'BlogPostCategory.under_blog_post_count'
 		),
 	);
 
