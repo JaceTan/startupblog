@@ -57,21 +57,6 @@ class BlogPostsController extends StartupBlogAppController {
 	}
 
 /**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->BlogPost->exists($id)) {
-			throw new NotFoundException(__('Invalid blog post'));
-		}
-		$options = array('conditions' => array('BlogPost.' . $this->BlogPost->primaryKey => $id));
-		$this->set('blogPost', $this->BlogPost->find('first', $options));
-	}
-
-/**
  * admin_add method
  *
  * @return void
