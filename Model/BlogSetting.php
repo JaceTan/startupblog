@@ -7,30 +7,43 @@ App::uses('StartupBlogAppModel', 'StartupBlog.Model');
 class BlogSetting extends StartupBlogAppModel {
 
 /**
- * Validation rules
+ * Display field
  *
- * @var array
+ * @var string
  */
-	public $validate = array(
-		'setting' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'setting_text' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+	public $displayField = 'setting';
+
+/**
+* The cache key used to cache the settings with
+*
+* @var string
+*/
+	protected $_cacheKey = 'blog_settings';
+
+/**
+* Clears cache files after saving
+*
+*/
+	public function afterSave() {
+		Cache::delete($this->_cacheKey);
+	}
+
+
+/**
+* Returns the an array of setting => value pairs. Handles caching.
+*
+* @return array
+*/
+	public function getSettings() {
+		if ($blogSettings = Cache::read($this->_cacheKey)) {
+			return $blogSettings;
+		}
+		$blogSettings = $this->find('list', array(
+			'fields' => array('setting', 'value')
+		));
+		Cache::write($this->_cacheKey, $blogSettings);
+		return $blogSettings;
+	}
+
+
 }
