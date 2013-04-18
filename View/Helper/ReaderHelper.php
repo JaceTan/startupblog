@@ -6,4 +6,8 @@ class ReaderHelper extends StartupBlogAppHelper {
 	public function saysStatus($value) {
 		return ($value) ? BlogPost::PUBLISHED : BlogPost::DRAFT;
 	}
+
+	public function saysYes($value) {
+		return ($value) ? "Yes" : "No";
+	}
 } 

@@ -22,7 +22,7 @@
 		<td><?php echo h($blogPost['BlogPost']['title']); ?>&nbsp;</td>
 		<td><?php echo h($blogPost['BlogPost']['slug']); ?>&nbsp;</td>
 		<td><?php echo h($this->Reader->saysStatus($blogPost['BlogPost']['published'])); ?>&nbsp;</td>
-		<td><?php echo h($blogPost['BlogPost']['in_rss']); ?>&nbsp;</td>
+		<td><?php echo h($this->Reader->saysYes($blogPost['BlogPost']['in_rss'])); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogPost['BlogPost']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogPost['BlogPost']['id'])); ?>
