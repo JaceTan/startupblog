@@ -6,6 +6,9 @@ App::uses('StartupBlogAppModel', 'StartupBlog.Model');
  */
 class BlogPost extends StartupBlogAppModel {
 
+	const DRAFT = "Draft";
+	const PUBLISHED = "Published";
+
 	public $actsAs = array(
 		'HabtmCounterCache.HabtmCounterCache' => array(
 			'counterScope' => array(

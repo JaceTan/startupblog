@@ -1,5 +1,6 @@
 <?php
 App::uses('StartupBlogAppController', 'StartupBlog.Controller');
+App::uses('ValuesToTextHelper', 'StartupBlog.Helper');
 /**
  * BlogPosts Controller
  *
@@ -11,14 +12,14 @@ class BlogPostsController extends StartupBlogAppController {
    *
    * @var array
    */
-	//public $components = array('RequestHandler');
+	public $components = array('RequestHandler');
 
 /**
  * Helpers
  *
  * @var array
  */
-	public $helpers = array('Text', 'Time');
+	public $helpers = array('Text', 'Time', 'StartupBlog.Reader');
 
 /**
  * index method
